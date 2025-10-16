@@ -1,0 +1,6 @@
+GET http://localhost:3000/api/users?name=Pedro&age=25&city=Madrid
+
+
+
+### 
+GET http://localhost:3000/api/users/2
