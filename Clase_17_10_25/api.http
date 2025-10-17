@@ -1,0 +1,24 @@
+GET http://localhost:3000/teams
+
+### 
+GET http://localhost:3000/teams/2
+###
+GET http://localhost:3000/teams/3
+
+###
+DELETE http://localhost:3000/teams/1
+
+
+###
+DELETE http://localhost:3000/teams/3
+
+###
+POST http://localhost:3000/teams
+Content-Type: application/json
+
+{
+    
+    "city": "aa",
+    "titles": 12
+}
+
