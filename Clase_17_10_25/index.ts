@@ -49,8 +49,8 @@ app.get("/teams", (req, res) => {
 })
 
 app.get("/teams/:id", (req, res) => {
-    const id = req.params.id;
-    const equipoBuscado = teams.find((team) => team.id == id);
+    const id = Number(req.params.id);
+    const equipoBuscado = teams.find((team) => team.id === id);
     if (!equipoBuscado) return res.status(404).json({ error: " Equipo no encontrado" });
     return res.status(200).send(equipoBuscado);
 })
@@ -71,8 +71,8 @@ app.post("/teams", (req, res) => {
 
 app.delete("/teams/:id", (req, res) => {
 
-    const id = req.params.id;
-    const index = teams.findIndex((team) => team.id == id);
+    const id = Number(req.params.id);
+    const index = teams.findIndex((team) => team.id === id);
     if (index === -1) {
         return res.status(404).send({ error: " Equipo no encontrado" });
     }
