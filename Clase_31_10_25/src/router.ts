@@ -5,8 +5,8 @@ import { ObjectId } from "mongodb";
 
 const router = Router();
 
-
-const coleccion = () => getDb().collection("users");
+//$set es una funcion de mongo.
+const coleccion = () => getDb().collection("usuarios");
 
 router.get("/", async (req, res) => {
     try {
@@ -42,12 +42,23 @@ router.post("/", async (req, res) => {
     try {
         const result = await coleccion().insertOne(req.body);
         const idMongo = result.insertedId;
-        const personaCreada = await coleccion().findOne({ _id: idMongo });
-        res.status(201).json(personaCreada);
+        const personaCreada = await coleccion().findOne({id: idMongo});
+        res.status(201).send(personaCreada);
     } catch (error) {
         res.status(400).json(error);
     }
 
+})
+
+router.post(`/multiples`, async(req, res) => {
+    try {
+        const result = await coleccion().insertMany(req.body.lista);
+        const ids = Object.values(result.insertedIds);
+        const personasCreadas = await coleccion().find({ _id: { $in: ids } }).toArray();
+        res.status(201).json(personasCreadas);
+    } catch (error) {
+        console.log(error);
+    }
 })
 
 router.put("/:id", async (req, res) => {
@@ -65,13 +76,13 @@ router.delete("/:id", async (req, res) => {
     try {
         const id = req.params.id;
         const personaElimianda = await coleccion().deleteOne({
-        _id: new ObjectId(id)
-    })
+            _id: new ObjectId(id)
+        })
         res.json({ personaElimianda });
     } catch (error) {
         console.log(error);
     }
-   
+
 })
 
 

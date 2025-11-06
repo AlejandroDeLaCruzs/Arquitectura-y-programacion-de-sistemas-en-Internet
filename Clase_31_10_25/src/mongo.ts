@@ -5,7 +5,8 @@ import denotev from "dotenv"
 
 let client: MongoClient;
 let db: Db;
-const dbName: string = "sample_mflix";
+//const dbName: string = "sample_mflix";
+const dbName: string = "mybbdd";
 
 
 export const connectMongoDB = async (): Promise<void> => {
