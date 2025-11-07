@@ -1,0 +1,23 @@
+
+
+### Insertar múltiples discos
+POST http://localhost:3000/api/ld/multiple
+Content-Type: application/json
+
+[
+  {
+        "id": 1,
+        "filmName": "Mision Imposible",
+        "rotationType": "CAV",
+        "region": "USA",
+        "lengthMinutes": 150,
+        "videoFormat": "NTSC"
+    },
+    {
+        "id": 2,
+        "filmName": "Prueba",
+        "rotationType": "CLV",
+        "region": "UK",
+       "lengthMinutes": 120
+    }
+]

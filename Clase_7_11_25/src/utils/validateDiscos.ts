@@ -25,3 +25,4 @@ export const validateDiscoData = (data: any): string | LD => {
 
     return data as LD;
 };
+

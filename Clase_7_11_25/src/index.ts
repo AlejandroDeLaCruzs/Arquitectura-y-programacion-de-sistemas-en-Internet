@@ -20,7 +20,7 @@ ConnectMongo();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/discos", discosrouter);
+app.use("/api/ld", discosrouter);
 
 app.use((req: Request, res: Response) => {
     res.status(404).json({ error: "Ruta no encontrada" });
