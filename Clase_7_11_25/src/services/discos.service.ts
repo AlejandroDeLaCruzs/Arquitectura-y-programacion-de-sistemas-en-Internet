@@ -1,6 +1,8 @@
 import { getDb } from "../config/db";
 import { LD, discosValidados, DiscosErroneo } from "../types/LD";
+import { Request, Response } from "express";
 import { validateDiscoData } from "../utils/validateDiscos";
+import { ObjectId } from "mongodb";
 
 const getColeccion = () => getDb().collection("Discos");
 
@@ -39,5 +41,16 @@ export const getAllDiscosService = async (query: any) => {
         info: { page, limit, sortParam, orderBy },
         result,
     };
+}
 
+export const getDiscosByIdService = async (req: Request) => {
+    try {
+        const id = req.params.id;
+        const discoBuscado = await getColeccion().findOne({
+            _id: new ObjectId(id)
+        });
+        return discoBuscado;
+    } catch (error) {
+        console.log("Error");
+    }
 }
